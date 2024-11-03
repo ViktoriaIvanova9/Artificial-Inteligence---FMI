@@ -69,11 +69,6 @@ Board::Board(int N, int emptyTileIndex, vector<int> board)
     this->board = board;
 }
 
-int Board::tileAt(int row, int col)
-{
-    return board[row * getDimension() + col];
-}
-
 int Board::getBoardSize()
 {
     return board.size();
@@ -82,11 +77,6 @@ int Board::getBoardSize()
 vector<int> Board::getBoard()
 {
     return board;
-}
-
-int Board::numberOfWrongPositions()
-{
-    return 0;
 }
 
 int Board::calcManhattanBetweenTwoPoints(pair<int, int> objectOne, pair<int, int> objectTwo)
@@ -140,16 +130,12 @@ vector<pair<Board, string>> Board::boardNeighbors()
     int blankPos = std::find(board.begin(), board.end(), 0) - board.begin();
     pair<int, int> position = calcRowAndColumn(blankPos);
     vector<pair<int, int>> directions = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
-    vector<string> stringDirections = {"LEFT", "DOWN", "RIGHT", "UP"};
-
-    // std::cout << "WOWW: " << position.first << " " << position.second << std::endl;
+    vector<string> stringDirections = {"left", "up", "right", "down"};
 
     for (int i = 0; i < directions.size(); i++)
     {
-        int newRow = position.first + directions[i].first;
-        int newCol = position.second + directions[i].second;
-
-        // std::cout << "NEIGHBOUR CHOSEN " << newRow << " " << newCol << std::endl;
+        int newRow = position.first + directions[i].second;
+        int newCol = position.second + directions[i].first;
 
         if (newRow >= 0 && newRow < getDimension() && newCol >= 0 && newCol < getDimension())
         {
@@ -170,21 +156,4 @@ bool Board::isSolvable()
     return (getDimension() % 2 == 0 && ((numberOfInversions() +
                                          calcRowAndColumn(blank).first + calcRowAndColumn(positionBlank).first) % 2 == 1)) ||
            (getDimension() % 2 == 1 && numberOfInversions() % 2 == 0);
-}
-
-void Board::printBoard()
-{
-    int cnt = 0;
-    std::cout << std::endl;
-    for (int i = 0; i < board.size(); ++i)
-    {
-        cnt++;
-        std::cout << board[i] << " ";
-        if (cnt == getDimension())
-        {
-            std::cout << std::endl;
-            cnt = 0;
-        }
-    }
-    std::cout << std::endl;
 }

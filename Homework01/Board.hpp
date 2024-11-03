@@ -30,20 +30,17 @@ public:
     Board(int N, int emptyTileIndex, vector<int> board);
 
     Board getTargetBoard();
-    int tileAt(int row, int col); // tile at (row, col) or 0 if blank
-    int getBoardSize();           // board size n
+    int getBoardSize();
     vector<int> getBoard();
-    int numberOfWrongPositions(); // number of tiles out of place
 
     int calcManhattanBetweenTwoPoints(pair<int, int> objectOne, pair<int, int> objectTwo);
     int calculateManhattanHeuristic();
 
-    bool isTargetBoard();                         // is this board the goal board?
-    bool areEqualBoards(Board other);       // does this board equal y?
-    vector<pair<Board, string>> boardNeighbors(); // all neighboring boards
-    bool isSolvable();                            // is this board solvable?
+    bool isTargetBoard();
+    bool areEqualBoards(Board other);
+    vector<pair<Board, string>> boardNeighbors();
+    bool isSolvable();
 
-    void printBoard();
 };
 
 #endif

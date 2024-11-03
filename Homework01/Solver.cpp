@@ -33,10 +33,6 @@ std::pair<Board *, int> Solver::limitedSearch(Board &currentBoard, int limit)
     }
     if (currentBoard.isTargetBoard())
     {
-        // std::cout << "NIIIIIK" << std::endl;
-        // initialBoard.getTargetBoard().printBoard();
-        // currentBoard.printBoard();
-        // std::cout << "NIIIIIK" << std::endl;
         return std::make_pair(&currentBoard, fCost);
     }
 
@@ -69,16 +65,9 @@ std::pair<Board *, int> Solver::limitedSearch(Board &currentBoard, int limit)
 
 void Solver::printSolution()
 {
-    // Board targetBoardToPush = initialBoard.getTargetBoard();
-    // if (!initialBoard.areEqualBoards(targetBoardToPush) && !pathToSolvedBoard.back().first.areEqualBoards(targetBoardToPush))
-    // {
-    //     pathToSolvedBoard.push_back({targetBoardToPush, "LEFT"});
-    // }
-
     std::cout << pathToSolvedBoard.size() << std::endl;
     for (int i = 0; i < pathToSolvedBoard.size(); ++i)
     {
-        // pathToSolvedBoard[i].first.printBoard();
         std::cout << pathToSolvedBoard[i].second << std::endl;
     }
 }
